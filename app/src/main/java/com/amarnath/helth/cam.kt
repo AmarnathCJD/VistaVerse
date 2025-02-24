@@ -36,6 +36,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,6 +62,19 @@ fun CamDetectorScreen() {
     val cameraProviderFuture = remember { ProcessCameraProvider.getInstance(context) }
     var imageCapture: ImageCapture? by remember { mutableStateOf(null) }
     var cameraSelector by remember { mutableStateOf(CameraSelector.DEFAULT_BACK_CAMERA) } // State for camera selector
+
+    if (ActivityCompat.checkSelfPermission(
+            LocalContext.current,
+            Manifest.permission.CAMERA
+        ) != PackageManager.PERMISSION_GRANTED
+    ) {
+        RequestLocationPermission(
+            onPermissionGranted = {},
+            onPermissionDenied = {},
+            onPermissionsRevoked = {}
+        )
+        return
+    }
 
     MaterialTheme(
         colorScheme = MaterialTheme.colorScheme.copy(

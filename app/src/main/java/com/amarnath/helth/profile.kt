@@ -93,28 +93,36 @@ fun ProfileDetailsSection() {
         )
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            "LOCATION",
-            fontSize = 16.sp,
-            color = Color.DarkGray
-        )
-        Text(
-            "New York, USA",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
-        )
+        DataSection()
+    }
+}
 
-        Spacer(modifier = Modifier.height(16.dp))
-        Text(
-            "PHONE",
-            fontSize = 16.sp,
-            color = Color.DarkGray
-        )
+@Composable
+fun DataSection() {
+    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 32.dp)) { // Horizontal padding for data section
+        DataItem("BLOOD TYPE", "O+")
+        DataItem("LOCATION", "New York, USA")
+        DataItem("PHONE", "+1 234 567 890")
+        DataItem("EMAIL", "janecooper01@gmail.com")
+        DataItem("Allergies", "Peanuts, Pollen")
+        DataItem("Medications", "Aspirin, Ibuprofen")
+    }
+}
 
+@Composable
+fun DataItem(label: String, value: String) {
+    Column(modifier = Modifier.padding(vertical = 8.dp)) { // Vertical padding for each data item
         Text(
-            "+1 234 567 890",
+            label,
+            fontSize = 14.sp, // Slightly smaller label size
+            color = Color.Gray,
+            fontWeight = FontWeight.Medium // Slightly bolder label weight
+        )
+        Text(
+            value,
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.Black // Explicitly set value color to black for emphasis
         )
     }
 }

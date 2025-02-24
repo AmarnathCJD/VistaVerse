@@ -27,15 +27,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        permissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (isGranted) {
-                    Log.d("Camera Permission", "Permission Granted")
-                } else {
-                    Log.d("Camera Permission", "Permission Denied")
-                }
-            }
-
         setContent {
             HelthTheme {
                 MainScreen()
